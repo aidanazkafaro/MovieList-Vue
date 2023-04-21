@@ -35,7 +35,7 @@ onMounted(() => {
     <div class="w-full md:w-3/4 justify-center mx-auto">
       <div class="flex flex-wrap">
         <div
-          class="w-full md:w-1/2 xl:w-1/4 space-y-2 cursor-pointer"
+          class="w-1/2 md:w-1/2 xl:w-1/4 md:space-y-2 cursor-pointer"
           v-for="movie in movies"
           :key="movie.id"
         >

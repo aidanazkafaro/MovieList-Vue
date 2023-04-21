@@ -19,7 +19,7 @@
           type="button"
           v-on:click="toggleNavbar()"
         >
-          <i class="fas fa-bars"></i>
+          ☰
         </button>
       </div>
       <div
