@@ -2,7 +2,7 @@
 import { defineProps, Teleport, Transition, ref } from 'vue';
 import { onClickOutside } from '@vueuse/core';
 
-const movieSummary = '';
+let movieSummary = '';
 const modal = ref(null);
 onClickOutside(modal, () => (isModalOpen.value = false));
 
