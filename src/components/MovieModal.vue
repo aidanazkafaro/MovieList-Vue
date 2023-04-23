@@ -1,8 +1,11 @@
 <script setup>
-import { defineProps, Teleport, Transition, ref } from 'vue';
+import { defineProps, Teleport, Transition, ref, reactive } from 'vue';
 import { onClickOutside } from '@vueuse/core';
 
-let movieSummary = '';
+const state = reactive({
+  movieSummary: '',
+});
+
 const modal = ref(null);
 onClickOutside(modal, () => (isModalOpen.value = false));
 
@@ -27,7 +30,7 @@ const props = defineProps({
         v-if="isModalOpen"
       >
         <div
-          class="relative bg-white px-10 py-10 rounded-md shadow-md h-3/4 md:h-fit w-2/3 md:min-w-3xl md:max-w-3xl overflow-scroll md:overflow-hidden"
+          class="relative bg-white px-10 py-10 rounded-md shadow-md h-3/4 md:h-fit w-2/3 md:min-w-3xl md:max-w-4xl overflow-scroll md:overflow-hidden"
           ref="modal"
         >
           <button
@@ -37,13 +40,15 @@ const props = defineProps({
             x
           </button>
 
-          <div class="flex flex-wrap md:flex-row">
-            <img
-              :src="movie.show.image.original"
-              alt="movie image"
-              class="w-[300px] h-auto"
-            />
-            <div class="w-full md:w-1/3 md:ml-10 flex flex-col">
+          <div class="flex flex-wrap md:flex-nowrap">
+            <div class="w-full md:w-1/3 border-2">
+              <img
+                :src="movie.show.image.original"
+                alt="movie image"
+                class="w-fit h-auto"
+              />
+            </div>
+            <div class="w-full md:w-2/3 flex flex-col mx-4">
               <div class="flex flex-row">
                 <h1 class="text-lg font-semibold w-2/3">
                   {{ movie.show.name }}
@@ -64,10 +69,11 @@ const props = defineProps({
                 v-if="movie.show.summary !== null"
               >
                 {{
-                  (movieSummary = movie.show.summary.replace(
+                  ((state.movieSummary = movie.show.summary.replace(
                     /<\/?[^>]+(>|$)/g,
                     ''
-                  ))
+                  )),
+                  state.movieSummary)
                 }}
               </p>
               <p class="text-sm text-slate-950 mt-5 w-56" v-else>No Summary</p>

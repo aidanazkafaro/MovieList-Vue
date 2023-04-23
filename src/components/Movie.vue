@@ -16,10 +16,10 @@ const props = defineProps({
 </script>
 
 <template>
-  <div class="p-4 md:p-6 space-y-2 cursor-pointer" ref="modal">
+  <div class="p-4 md:p-6 space-y-2 hover:opacity-95" ref="modal">
     <img
       :src="movie.show.image.medium"
-      class="rounded-md w-full h-96 md:h-80 object-cover"
+      class="rounded-md w-full h-96 md:h-80 object-cover cursor-pointer"
       @click.native="isModalOpen = !isModalOpen"
       alt="movie image"
     />
